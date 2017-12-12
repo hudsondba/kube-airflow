@@ -13,7 +13,7 @@ ENV TERM linux
 
 # Airflow
 #ARG AIRFLOW_VERSION=%%AIRFLOW_VERSION%%
-ARG AIRFLOW_VERSION=1.8.2
+ENV AIRFLOW_VERSION 1.8.2
 ENV AIRFLOW_HOME /usr/local/airflow
 
 # Define en_US.
@@ -77,7 +77,8 @@ RUN set -ex \
         /usr/share/doc \
         /usr/share/doc-base
 
-ENV KUBECTL_VERSION %%KUBECTL_VERSION%%
+#ENV KUBECTL_VERSION %%KUBECTL_VERSION%%
+ENV KUBECTL_VERSION 1.6.1
 
 RUN curl -L -o /usr/local/bin/kubectl https://storage.googleapis.com/kubernetes-release/release/v${KUBECTL_VERSION}/bin/linux/amd64/kubectl && chmod +x /usr/local/bin/kubectl
 
