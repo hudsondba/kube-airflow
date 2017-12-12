@@ -5,7 +5,7 @@
 # SOURCE: https://github.com/mumoshu/kube-airflow
 
 FROM debian:jessie
-MAINTAINER Yusuke KUOKA <ykuoka@gmail.com>
+MAINTAINER Hudson Santos <hudsondba@gmail.com>
 
 # Never prompts the user for choices on installation/configuration of packages
 ENV DEBIAN_FRONTEND noninteractive
@@ -47,7 +47,12 @@ RUN set -ex \
         netcat \
         locales \
     && apt-get install -yqq -t jessie-backports python-requests libpq-dev \
-    && apt-get install -yqq -t vim \
+    && apt-get update \
+    && apt-get -y install python-software-properties \
+    && apt-get -y install apt-file \
+    && apt-file -y update \
+    && apt-get -y install software-properties-common \
+    && apt-get -y install vim \
     && sed -i 's/^# en_US.UTF-8 UTF-8$/en_US.UTF-8 UTF-8/g' /etc/locale.gen \
     && locale-gen \
     && update-locale LANG=en_US.UTF-8 LC_ALL=en_US.UTF-8 \
